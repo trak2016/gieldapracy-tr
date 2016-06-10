@@ -35,20 +35,20 @@
 
     if (!isset($_SESSION['zalogowano'])) {
         ?>
-        <form method="post" action="#" class="navbar-brand">
+        <form method="Post" action="#" class="navbar-brand">
             <input type = "text" name = "username" placeholder = "Login">
             <input type = "password" name = "password" placeholder = "Hasło">
             <input type="submit" name="zaloguj" value="Zaloguj" />
         </form>
-        <form method="post" action="#" class="navbar-brand">
+        <form method="Post" action="#" class="navbar-brand">
             <input type="submit" name="zarejestruj" value="Zarejestruj" />
         </form>
         <?php
     } else {
         ?>
-        <a href="Profil">Profil</a>
-        <form method="post" action="#" class="navbar-brand">
+        <form method="Post" action="#" class="navbar-brand">
             <input type="submit" name="wyloguj" value="Wyloguj"/>
+            <input type="submit" name="profil" value="Profil"/>
         </form>
 
     <?php } ?>

@@ -10,6 +10,7 @@ ini_set('session.cookie_lifetime',3600); //cookie
 session_start();
 
 mysql_connect($nazwahostu, $uzytkownik, $haslo);
+
 mysql_select_db($nazwabazy);
 
 ?>

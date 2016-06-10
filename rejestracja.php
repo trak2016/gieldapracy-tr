@@ -1,9 +1,8 @@
 <?php
-include_once 'connect.php';
 
 function zarejestruj() {
     if (strlen($_POST['login']) <= 25 && strlen($_POST['haslo']) <= 25 && ($_POST['haslo'] == $_POST['haslo2']) && strlen($_POST['email']) >= 1) {
-        if (sprawdz_login($_POST['login']) && strlen($_POST['haslo']) >= 6) {
+        if (strlen($_POST['haslo']) >= 6) {
             $login = strtolower($_POST['login']);
             $login = trim($login);
             $login = mysql_real_escape_string($login);
@@ -40,29 +39,20 @@ function zarejestruj() {
     }
 }
 
-function sprawdz_login() {
-    $dozwolone = "-_" . "abcdefghijklmnopqrstuvwxyz" . "0123456789" . "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    if (strspn($_POST['login'], $dozwolone) == 0)
-        return false;
-    if (strspn($_POST['login'], $dozwolone) != strlen($_POST['login']))
-        return false;
-    if (strlen($_POST['login']) < 5)
-        return false;
-    if (strlen($_POST['login']) > 25)
-        return false;
-    return true;
-}
 
+function rejestracjaWyślij(){
 if (isset($_POST['wyslij']) && $_POST['wyslij'] == 'Wyślij') {
     $wiadomosc = zarejestruj();
-    echo $wiadomosc;
+    if($wiadomosc=='Utworzono nowe konto')unset($_SESSION['rejestruj']);
+    return $wiadomosc;
 } else {
-    //$wiadomosc="W celu założenia konta proszę wypełnić wszystkie pola";
-    echo "W celu założenia konta proszę wypełnić wszystkie pola";
+    $_SESSION['rejestruj']=true;
+    return "W celu założenia konta proszę wypełnić wszystkie pola";
+}
 }
 ?>
 
-<form id="register" action="#" method="POST">
+<form action="#" method="Post">
     <h2>Rejestracja</h2>
     <p><input type="text" name="login" maxlength="25" minlength="5" />Login <i>(5-25 znaków)</i></p>
     <p><input type="password" name="haslo" maxlength="25" minlength="6" />Hasło <i>(6-25 znaków)</i></p>
@@ -73,6 +63,6 @@ if (isset($_POST['wyslij']) && $_POST['wyslij'] == 'Wyślij') {
 
     <p><input type="submit" name="wyslij" value="Wyślij" />
         <input type="reset" value="Reset" /></p>
-    <a id="click" href="index.php">Powrót</a>
+    <p><input type="submit" name="wyjdz" value="Wyjdz" /></p>
+    </form>
 
-</form>
