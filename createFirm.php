@@ -1,26 +1,26 @@
 <?php
+ini_set('include_path', '/opt/lampp/htdocs/content');
+include_once 'header.php';
 
-function createFirm() {
-    if (isset($_POST['createFirm']) && $_POST['createFirm'] === "CreateFirm") {
-        if (strlen(!$_POST['firmname']) < 3) {
-            $nazwafirmy = mysql_real_escape_string($_POST['firmname']);
-            $idwlasciciela = $_SESSION['id_uz'];
-            $opisfirmy = mysql_real_escape_string($_POST['describe']);
+if (isset($_POST['createFirm']) && $_POST['createFirm'] === "CreateFirm") {
+    if (!strlen($_POST['firmname']) < 3) {
+        $nazwafirmy = mysql_real_escape_string($_POST['firmname']);
+        $idwlasciciela = $_SESSION['id_uz'];
+        $opisfirmy = mysql_real_escape_string($_POST['describe']);
 
-            $query = "INSERT INTO firma (nazwa_firmy, id_wlasciciela, opis_firmy)
+        $query = "INSERT INTO firma (nazwa_firmy, id_wlasciciela, opis_firmy)
                     VALUES ('$nazwafirmy', '$idwlasciciela', '$opisfirmy')";
-            
-            mysql_query($query);
-            
-            unset($_SESSION['createfirm']);
-            return "Dodano nową firmę";
-        } else {
-            return "Pola wypełnione niepoprawnie";
-        }
+
+        mysql_query($query);
+
+        unset($_SESSION['createfirm']);
+        echo "Dodano nową firmę";
     } else {
-        $_SESSION['createfirm'] = true;
-        return "Porszę wypełnić poprawnie wszystkie pola";
+        echo "Pola wypełnione niepoprawnie";
     }
+} else {
+    $_SESSION['createfirm'] = true;
+    echo "Porszę wypełnić poprawnie wszystkie pola";
 }
 ?>
 <form action="#" method="Post">
@@ -33,3 +33,5 @@ function createFirm() {
         <input type="reset" value="Reset" /></p>
     <p><input type="submit" name="wyjdz" value="Wyjdz" /></p>
 </form>
+
+<?php include_once 'footer.php'; ?>
