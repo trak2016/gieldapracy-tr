@@ -29,9 +29,9 @@ if (isset($_POST['createFirm']) && $_POST['createFirm'] === "CreateFirm") {
     <p><input type="text" name="firmname" maxlength="25" minlength="3" /></p>
     Opisz Firmę:</br>
     <textarea name="describe" rows="10" cols="60">Opis Twojej Firmy</textarea>
-    <p><input type="submit" name="createFirm" value="CreateFirm"/>
-        <input type="reset" value="Reset" /></p>
-    <p><input type="submit" name="wyjdz" value="Wyjdz" /></p>
+    <p><input class="btn btn-success" type="submit" name="createFirm" value="CreateFirm"/>
+        <input class="btn btn-danger" type="reset" value="Reset" /></p>
 </form>
+<p><a href="index.php" class="btn btn-warning">Wyjdź</a></p>
 
 <?php include_once 'footer.php'; ?>

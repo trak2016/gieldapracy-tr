@@ -5,7 +5,7 @@ include_once 'header.php';
 
 function zarejestruj(){
 if (strlen($_POST['login']) <= 25 && strlen($_POST['haslo']) <= 25 && ($_POST['haslo'] == $_POST['haslo2']) && strlen($_POST['email']) >= 1) {
-    if (strlen($_POST['haslo']) >= 6) {
+    if ((strlen($_POST['login']) >= 5) && (strlen($_POST['haslo']) >= 6)) {
         $login = strtolower($_POST['login']);
         $login = trim($login);
         $login = mysql_real_escape_string($login);
@@ -23,8 +23,8 @@ if (strlen($_POST['login']) <= 25 && strlen($_POST['haslo']) <= 25 && ($_POST['h
             $haslo = md5($_POST['haslo']);
             $zapytanie = "INSERT INTO uzytkownik (login, haslo, Imie, Nazwisko, email)
 							values ('$login', '$haslo', '$imie', '$nazwisko', '$email')";
-            $wynik = mysql_unbuffered_query($zapytanie);
-            echo "$wynik";
+            $wynik = mysql_query($zapytanie);
+
             if (!$wynik) {
                 $wiadomosc = 'Błąd bazy danych';
                 return $wiadomosc;

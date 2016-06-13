@@ -27,6 +27,6 @@ if (isset($_POST['passworldChange']) && $_POST['passworldChange'] === "Zmień Ha
     <p>Wprowadź obecne hasło:</br><input type="password" name="passworldold"></p>
     <p>Wprowadź nowe hasło:</br><input type="password" name="passworldnew1"><i>(6-25 znaków)</i></p>
     <p>Powtórz nowe hasło:</br><input type="password" name="passworldnew2"> </p>
-    <p><input type="submit" name="passworldChange" value="Zmień Hasło"></p>
+    <p><input class="btn btn-success" type="submit" name="passworldChange" value="Zmień Hasło"></p>
 </form>
 <?php include_once 'footer.php'; ?>
